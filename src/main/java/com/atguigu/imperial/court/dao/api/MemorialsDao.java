@@ -1,5 +1,9 @@
 package com.atguigu.imperial.court.dao.api;
 
+import com.atguigu.imperial.court.entity.Memorials;
+
+import java.util.List;
+
 /**
  * ClassName: MemorialsDao
  * Package: com.atguigu.imperial.court.dao.api
@@ -10,4 +14,5 @@ package com.atguigu.imperial.court.dao.api;
  * @Version 1.0f
  */
 public interface MemorialsDao {
+    List<Memorials> selectAllMemorialsDigest();
 }
