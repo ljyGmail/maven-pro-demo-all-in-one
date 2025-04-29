@@ -28,5 +28,33 @@
 </div>
 
 <!-- 数据显示部分 -->
+<table>
+    <thead>
+    <tr>
+        <th>奏折标题</th>
+        <th>内容摘要</th>
+        <th>上疏大臣</th>
+        <th>上疏时间</th>
+        <th>奏折状态</th>
+        <th>奏折详情</th>
+    </tr>
+    </thead>
+    <tbody th:if="${#lists.isEmpty(memorialsList)}">
+    <tr>
+        <td colspan="6">没有人上过折子</td>
+    </tr>
+    <tbody th:if="${not #lists.isEmpty(memorialsList)}"></tbody>
+    <tr th:each="memorials : ${memorialsList}">
+        <td th:text="${memorials.memorialsTitle}"></td>
+        <td th:text="${memorials.memorialsContentDigest}"></td>
+        <td th:text="${memorials.memorialsEmpName}"></td>
+        <td th:text="${memorials.memorialsCreateTime}"></td>
+        <td th:text="${memorials.memorialsStatus}"></td>
+        <td>
+            <a th:href="@{/work?method=detail}">奏折详情</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
