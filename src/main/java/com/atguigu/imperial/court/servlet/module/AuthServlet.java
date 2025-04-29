@@ -35,7 +35,7 @@ public class AuthServlet extends ModuleBaseServlet {
             String loginPassword = request.getParameter("loginPassword");
 
             // 2. 调用EmpService方法执行登录逻辑
-            Emp emp = empService.getEmpLoginAccount(loginAccount, loginPassword);
+            Emp emp = empService.getEmpByLoginAccount(loginAccount, loginPassword);
 
             // 3. 调用EmpService方法执行登录逻辑
             HttpSession session = request.getSession();
@@ -55,11 +55,23 @@ public class AuthServlet extends ModuleBaseServlet {
                 request.setAttribute("message", e.getMessage());
 
                 // ② 处理视图: index
-                processTemplate("index",request,response);
-            } else{
+                processTemplate("index", request, response);
+            } else {
                 // 8. 如果不是登录异常则封装为运行时异常继续抛出
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    protected void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 1. 通过request对象获取HttpSession对象
+        HttpSession session = request.getSession();
+
+        // 2. 将HttpSession对象强制失效
+        session.invalidate();
+
+        // 3. 回到首页
+        String templateName = "index";
+        processTemplate(templateName, request, response);
     }
 }

@@ -26,6 +26,15 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>authServlet</servlet-name>
+        <servlet-class>com.atguigu.imperial.court.servlet.module.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>authServlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>txFilter</filter-name>
         <filter-class>com.atguigu.imperial.court.filter.TransactionFilter</filter-class>
