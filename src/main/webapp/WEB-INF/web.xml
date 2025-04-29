@@ -17,6 +17,15 @@
         <param-value>.html</param-value>
     </context-param>
 
+    <servlet>
+        <servlet-name>portalServlet</servlet-name>
+        <servlet-class>com.atguigu.imperial.court.servlet.module.PortalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>portalServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>txFilter</filter-name>
         <filter-class>com.atguigu.imperial.court.filter.TransactionFilter</filter-class>

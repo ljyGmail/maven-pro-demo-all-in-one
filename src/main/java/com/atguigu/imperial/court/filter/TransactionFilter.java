@@ -42,13 +42,15 @@ public class TransactionFilter implements Filter {
         // 前置操作: 排除静态资源
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String servletPath = request.getServletPath();
-        String extName = servletPath.substring(servletPath.lastIndexOf("."));
+        if (servletPath.contains(".")) {
+            String extName = servletPath.substring(servletPath.lastIndexOf("."));
 
-        if (staticResourceExtNameSet.contains(extName)) {
-            // 如果检测到当前请求确实是静态资源，则直接放行，不做事物操作
-            filterChain.doFilter(servletRequest, servletResponse);
-            // 当前方法立即返回
-            return;
+            if (staticResourceExtNameSet.contains(extName)) {
+                // 如果检测到当前请求确实是静态资源，则直接放行，不做事物操作
+                filterChain.doFilter(servletRequest, servletResponse);
+                // 当前方法立即返回
+                return;
+            }
         }
 
         Connection connection = null;
