@@ -44,6 +44,19 @@ public class WorkServlet extends ModuleBaseServlet {
         // 2. 根据memorialsId从Service中查询Memorials对象
         Memorials memorials = memorialsService.getMemorialsDetailById(memorialsId);
 
+        // ********************补充功能********************
+        // 获取当前奏折对象的状态
+        Integer memorialsStatus = memorials.getMemorialsStatus();
+
+        // 判断奏折状态
+        if (memorialsStatus == 0) {
+            // 更新奏折的状态
+            memorialsService.updateMemorialsStatusToRead(memorialsId);
+
+            memorials.setMemorialsStatus(1);
+        }
+        // ********************补充功能********************
+
         // 3. 将Memorials对象存入请求域
         request.setAttribute("memorials", memorials);
 

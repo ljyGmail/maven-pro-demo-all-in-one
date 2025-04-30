@@ -47,4 +47,11 @@ public class MemorialsDaoImpl extends BaseDao<Memorials> implements MemorialsDao
                 "where memorials_id = ?";
         return getSingleBean(sql, Memorials.class, memorialsId);
     }
+
+    @Override
+    public void updateMemorialsStatusToRead(String memorialsId) {
+        String sql = "update t_memorials set memorials_status = 1 where memorials_id = ?";
+
+        update(sql, memorialsId);
+    }
 }
